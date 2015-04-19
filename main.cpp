@@ -20,8 +20,8 @@ int main(int argc, char* argv[]) {
   vector<Queen> queens;
   Set<int> used;
   for (int i = 0; i < n; i++) {
-    int y = rand() % (n-1);
-    while(used.contains(y)) y = rand() % (n-1);
+    int y = rand() % (n);
+    while(used.contains(y)) y = rand() % (n);
     Queen temp = Queen(board, i, y);
     queens.push_back(temp);
     used.add(y);

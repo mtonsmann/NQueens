@@ -18,17 +18,27 @@ int main(int argc, char* argv[]) {
   // populate board with queens
   vector<Queen> queens;
   Set<int> used;
+  srand(time(NULL));
   for (int i = 0; i < n; i++) {
-    int y = rand() % (n);
-    while(used.contains(y)) y = rand() % (n);
+    int y = rand() % n;
+    while(used.contains(y)){y = rand() % n;}
     Queen temp = Queen(board, i, y);
     queens.push_back(temp);
     used.add(y);
   }
 
-  board.printContent();
-
-  board.printHeat();
+  while(!board.isDone())
+  {
+    for(Queen q : queens)
+    {
+      q.move(board);
+      board.resetHeat();
+      q.setHeat(board);
+      board.printContent();
+      board.printHeat();
+      int foo = getInteger("Step?");
+    }
+  }
 
   return 0;
 }

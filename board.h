@@ -8,9 +8,12 @@ public:
   Board(int n);
   void printContent();
   void printHeat();
+  bool isDone();
+  void resetHeat();
 
   Vector<Vector<char> > content;
   Vector<Vector<int> > heat;
+  int ng;
 
 private:
 

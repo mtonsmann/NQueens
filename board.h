@@ -6,8 +6,11 @@
 class Board {
 public:
   Board(int n);
-  Vector<Vector<char> > content;
   void printContent();
+  void printHeat();
+
+  Vector<Vector<char> > content;
+  Vector<Vector<int> > heat;
 
 private:
 

@@ -15,7 +15,6 @@ int main(int argc, char* argv[]) {
 
   board.printContent();
 
-  //Queen queen = Queen(board, 0, 3);
   // populate board with queens
   vector<Queen> queens;
   Set<int> used;
@@ -28,6 +27,8 @@ int main(int argc, char* argv[]) {
   }
 
   board.printContent();
+
+  board.printHeat();
 
   return 0;
 }

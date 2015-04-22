@@ -39,13 +39,13 @@ void Board::printHeat() {
 bool Board::isDone()
 {
   //the outer layer of the for loop, switches rows
-  for(int i = 0; i < heat.size(); i++)
+  for(int y = 0; y < heat.size(); y++)
   {
     //inner layer, this one is for going to actual spaces
-    for(int j = 0; j < heat[i].size(); j++)
+    for(int x = 0; x < heat[y].size(); x++)
     {
       //checks the heat map value
-      if(heat[i][j] != 1){return false;}
+      if((heat[y][x] != 1) && (content[y][x] == 'Q')) return false;
     }
   }
   return true;

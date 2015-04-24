@@ -23,6 +23,7 @@ int main(int argc, char* argv[]) {
     c = 0;
     cout << "*************RESTART***************" << endl;
   }
+  cout << "Total steps made: " << to_string(total) << endl;
   cout << endl << double( clock() - startTime ) / (double)CLOCKS_PER_SEC << " seconds." << endl;
 
   return 0;
@@ -46,9 +47,9 @@ void solve(int n) {
       used.add(x);
     }
 
-    board.printContent();
+    //board.printContent();
 
-    board.printHeat();
+    //board.printHeat();
 
     while(!board.isDone()) {
       if (c > n*10) break;
@@ -68,11 +69,11 @@ void solve(int n) {
         for (Queen qu : queens) {
           qu.setHeat(board);
         }
-        board.printContent();
-        board.printHeat();
+        //board.printContent();
+        //board.printHeat();
         c++;
         total++;
-        cout << "Total steps made: " << to_string(total) << endl;
+        //cout << "Total steps made: " << to_string(total) << endl;
       }
 
   }

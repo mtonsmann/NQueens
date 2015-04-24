@@ -18,7 +18,7 @@ void Queen::setHeat(Board &board) {
       }
     }
   }
-  cout << "setHeat x_cord: " << to_string(x_cord) << endl << endl;
+  //cout << "setHeat x_cord: " << to_string(x_cord) << endl << endl;
 }
 
 bool Queen::canMoveTest(int x, int y) {
@@ -35,18 +35,17 @@ Queen Queen::move(Board &board)
   srand(time(NULL));
 
   //for testing:
-  cout << "initial min location : " << to_string(x_min) << endl;
+  //cout << "initial min location : " << to_string(x_min) << endl;
 
   for(int i = 1; i < board.heat[y_cord].size(); i++) {
 
     if(board.heat[y_cord][i] < min) {
-      min = board.heat[x_cord][i];
+      min = board.heat[y_cord][i];
       x_min = i;
     }
-    if(board.heat[x_cord][i] == min) {
-      if(rand() % 2 == 1)
-      {
-        min = board.heat[x_cord][i];
+    if(board.heat[y_cord][i] == min) {
+      if(rand() % 2 == 1) {
+        min = board.heat[y_cord][i];
         x_min = i;
       }
     }
@@ -54,8 +53,8 @@ Queen Queen::move(Board &board)
   board.content[y_cord].set(x_cord, '#');
   x_cord = x_min;
   // for testing:
-  cout << "final min: " << to_string(x_min) << endl;
-  cout << "new x_cord: " << to_string(x_cord) << endl << endl;
+  //cout << "final min: " << to_string(x_min) << endl;
+  //cout << "new x_cord: " << to_string(x_cord) << endl << endl;
   board.content[y_cord].set(x_cord, 'Q');
 
   return Queen(board, x_cord, y_cord);

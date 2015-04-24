@@ -6,17 +6,33 @@
 
 using namespace std;
 
+int c = 0;
+int total = 0;
+bool solved = false;
+
+void solve(int n);
+
 int main(int argc, char* argv[]) {
 
   // prompt for n
   int n = getInteger("Chessboard size/number of queens (N)? ");
-  int count = 0;
 
+  clock_t startTime = clock();
+  while(!solved) {
+    solve(n);
+    c = 0;
+    cout << "*************RESTART***************" << endl;
+  }
+  cout << endl << double( clock() - startTime ) / (double)CLOCKS_PER_SEC << " seconds." << endl;
+
+  return 0;
+}
+
+void solve(int n) {
   Board board = Board(n);
 
   board.printContent();
 
-  while (true)  {
     // populate board with queens
     vector<Queen> queens;
     Set<int> used;
@@ -35,12 +51,17 @@ int main(int argc, char* argv[]) {
     board.printHeat();
 
     while(!board.isDone()) {
+      if (c > n*10) break;
+
       for(Queen q : queens) {
 
-        if (board.isDone()) break;
+        if (board.isDone()) {
+          solved = true;
+          break;
+        } else if (c > n*10) break;
         //TODO: maybe add an if (q.isMin) continue??
 
-        int i = count % queens.size();
+        int i = c % queens.size();
 
         queens[i] = q.move(board);
         board.resetHeat();
@@ -49,11 +70,10 @@ int main(int argc, char* argv[]) {
         }
         board.printContent();
         board.printHeat();
-        count++;
-        cout << "Steps made: " << to_string(count) << endl;
+        c++;
+        total++;
+        cout << "Total steps made: " << to_string(total) << endl;
       }
-    }
-  }
 
-  return 0;
+  }
 }
